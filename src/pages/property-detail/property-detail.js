@@ -21,29 +21,20 @@ const params = history.getParams();
 const isId = Boolean(params.id);
 
 getPropertyDetail(params.id).then((apiPropertyDetail) => {
-  console.log('apiPropertyDetail', apiPropertyDetail);
   property = apiPropertyDetail;
   return apiPropertyDetail;
 });
 
 getEquipmentsList().then((lista) => {
-  getEquipments(params.id).then((data) => {
-    let dataMap = Object.assign(...data.map((d) => ({ [d[0]]: d[0] })));
-    property.equipments = lista
-      .filter((elem) => elem.id === dataMap[elem.id])
-      .map((elem) => elem.name);
-    console.log('equipments', property.equipments);
-    return property.equipments;
-  });
-});
-console.log(property.equipments);
-
-if (isId) {
-  Promise.all([getPropertyDetail(), getEquipmentsList()]).then(
-    (property, equipments) => {
-      console.log('property and equipments', property, equipments);
+  if (isId) {
+    getEquipments(params.id).then((data) => {
+      let dataMap = Object.assign(...data.map((d) => ({ [d[0]]: d[0] })));
+      property.equipments = lista
+        .filter((elem) => elem.id === dataMap[elem.id])
+        .map((elem) => elem.name);
+      property = mapPropertyDetailFromApiToVm(property, property.equipments);
       setPropertyValues(property);
-      console.log('property', property);
-    }
-  );
-}
+      return property.equipments;
+    });
+  }
+});

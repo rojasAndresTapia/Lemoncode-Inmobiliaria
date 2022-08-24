@@ -1,16 +1,15 @@
-import { getEquipmentsList } from './property-detail.api';
-export const mapPropertyDetailFromApiToVm = (property, equipments) => {
+export const mapPropertyDetailFromApiToVm = (property, equipmentsLIst) => {
   return {
     mainImage: Array.isArray(property.images) ? property.images[0] : '',
-    price: property.price,
+    price: `${property.price.toLocaleString('de-DE')} €`,
     title: property.title,
     city: property.city,
-    rooms: property.rooms,
-    squareMeter: property.squareMeter,
+    rooms: `${property.rooms} habitaciones`,
+    squareMeter: `${property.squareMeter} metros cuadrados`,
     bathrooms: `${property.bathrooms} ${getBathroomText(property.rooms)}`,
     notes: property.notes,
     mainFeatures: property.mainFeatures,
-    equipments: equipments,
+    equipments: equipmentsLIst,
     locationUrl: property.locationUrl,
     images: property.images,
   };
