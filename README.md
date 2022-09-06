@@ -15,7 +15,7 @@ It has 3 different screens:
 
 2. Detail of the property
 
-<img src="images/property-datail-img.png" alt="property detail" width="50%">
+<img src="images/property-detail-img.png" alt="property detail" width="50%">
 
 3. Upload a new property. it has a form to upload a new property to the platform, and then display it in the list with all its features.
 
