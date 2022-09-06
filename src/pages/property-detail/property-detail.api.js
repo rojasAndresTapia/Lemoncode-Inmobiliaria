@@ -11,7 +11,9 @@ export const getPropertyDetail = (propertyId) =>
 
 export const getEquipments = (propertyId) =>
   Axios.get(`${url}`).then((response) => {
+    console.log('equipmentsId', response.data);
     const propertyEquipments = response.data[propertyId - 1].equipmentIds;
+
     return propertyEquipments;
   });
 
